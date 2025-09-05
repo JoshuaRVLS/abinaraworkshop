@@ -2,7 +2,7 @@
 
 std::string& Maze::generateSymbol() {
   std::mt19937 gen(rd());
-  std::uniform_int_distribution randomNumber(0, (int)symbols.size()-1); 
+  std::uniform_int_distribution<int> randomNumber(0, (int)symbols.size()-1); 
   return symbols[randomNumber(gen)];
 }
 
@@ -12,7 +12,7 @@ std::vector<int> &Maze::getPlayerPosition() {
 
 int Maze::generateRandomPosition() {
   std::mt19937 gen(rd());
-  std::uniform_int_distribution randomNumber(0, 19);
+  std::uniform_int_distribution<int> randomNumber(0, 19);
   return randomNumber(gen);
 } 
 

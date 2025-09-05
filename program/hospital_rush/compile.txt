@@ -2,4 +2,4 @@ Windows:
 g++ *.cpp --include-directory="./include/" -o ./bin/main
 
 Linux:
-g++ *.cpp --include-directory="./include/" -o ./bin/main -lncurses
+g++ *.cpp --include-directory="./include/" -o ./bin/main
