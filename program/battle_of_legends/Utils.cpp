@@ -5,3 +5,19 @@ double utils::generateNumber(int lowerBound, int higherBound) {
     std::uniform_real_distribution<double> generateNumber(lowerBound, higherBound);
     return generateNumber(randomEngine);
 }
+
+char utils::getch() {
+  struct termios oldt;
+  tcgetattr(STDIN_FILENO, &oldt);
+        
+  struct termios newt = oldt;
+  newt.c_lflag &= ~(ICANON | ECHO);
+  tcsetattr(STDIN_FILENO, TCSANOW, &newt);
+        
+  char ch;
+  read(STDIN_FILENO, &ch, 1);
+        
+  tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
+        
+  return ch;
+}

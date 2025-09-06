@@ -5,19 +5,19 @@ Patient::Patient(const uint32_t& uniqueId, const std::string &nama, const uint32
 uint32_t &Patient::getUniqueId()
 {
   // TODO: insert return statement here
-  return this->uniqueId_;
+  return uniqueId_;
 }
 std::string &Patient::getName()
 {
   // TODO: insert return statement here
-  return this->nama_;
+  return nama_;
 }
 uint32_t &Patient::getTingkatan()
 {
   // TODO: insert return statement here
-  return this->tingkatan_;
+  return tingkatan_;
 }
 uint32_t &Patient::getUrutan() {
   // TODO: insert return statement here
-  return this->urutan_;
+  return urutan_;
 }

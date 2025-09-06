@@ -22,11 +22,11 @@
 
 
 Game::Game() {
-  this->init_();
+  init_();
 }
 
 void Game::init_() {
-  this->maze.generateMaze();
+  maze.generateMaze();
 }
 
 void Game::clear_() {
@@ -38,20 +38,20 @@ void Game::clear_() {
 }
 
 void Game::render_() {
-  this->maze.printMap();
+  maze.printMap();
 }
 
 void Game::check_() {
-  auto& currentLayer = this->maze.getMap()[this->maze.getPlayerPosition()[1]][this->maze.getPlayerPosition()[0]];
+  auto& currentLayer = maze.getMap()[maze.getPlayerPosition()[1]][maze.getPlayerPosition()[0]];
   if (currentLayer.size() > 1) {
     currentLayer[1].setHidden(false);
     if (currentLayer[1].getValue() == "*") {
       std::cout << "Kamu Kalah!" << std::endl;
-      this->isRunning_ = false;
+      isRunning_ = false;
       exit(0);
     } else if (currentLayer[1].getValue() == "E") {
       std::cout << "Kamu Menang!" << std::endl;
-      this->isRunning_ = false;
+      isRunning_ = false;
       exit(0);
     }
   }
@@ -62,31 +62,31 @@ void Game::input_() {
   char key_pressed = getch();
   switch(key_pressed) {
     case 'w':
-      this->maze.movePlayer({0, -1});
+      maze.movePlayer({0, -1});
       break;
     case 'a':
-      this->maze.movePlayer({-1, 0});
+      maze.movePlayer({-1, 0});
       break;
     case 's':
-      this->maze.movePlayer({0, 1});
+      maze.movePlayer({0, 1});
       break;
     case 'd':
-      this->maze.movePlayer({1, 0});
+      maze.movePlayer({1, 0});
       break;
     case 'q':
       exit(0);
       break;
     case 'r':
-      this->maze.generateMaze();
+      maze.generateMaze();
       break;
   }
 }
 
 void Game::start() {
-  while (this->isRunning_) {
-    this->clear_();
-    this->render_();
-    this->check_();
-    this->input_();
+  while (isRunning_) {
+    clear_();
+    render_();
+    check_();
+    input_();
   }
 }

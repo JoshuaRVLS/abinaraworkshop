@@ -59,35 +59,35 @@ void Shop::showMenu_()
 
   switch(option) {
     case 1:
-      this->clear_();
-      this->addProduct_();
-      this->wait_();
+      clear_();
+      addProduct_();
+      wait_();
       break;
     case 2:
-      this->clear_();
-      this->showProducts_();
-      this->wait_();
+      clear_();
+      showProducts_();
+      wait_();
       break;
     case 3:
-      this->clear_();
-      this->showTotalProducts_();
-      this->wait_();
+      clear_();
+      showTotalProducts_();
+      wait_();
       break;
     case 4:
-      this->clear_();
+      clear_();
       uint32_t productIndex;
       std::cout << "Masukan produk yang ingin anda beli: ";
       std::cin >> productIndex;
-      this->buyProduct_(productIndex);
-      this->wait_();
+      buyProduct_(productIndex);
+      wait_();
       break;
     case 5:
       std::cout << "Terima kasih sudah menggunakan sistem Abinaramart!" << std::endl;
-      this->isRunning_ = false;
+      isRunning_ = false;
       break;
     default:
       std::cout << "Opsi tidak ada!" << std::endl;
-      this->wait_();
+      wait_();
       break;
   }
 }
@@ -102,7 +102,7 @@ void Shop::addProduct_() {
   std::cout << "Masukan harga barang: Rp";
   std::cin >> productPrice;
 
-  this->products_.push_back(Product(products_.size(), productName, productPrice));
+  products_.push_back(Product(products_.size(), productName, productPrice));
 
   std::cout << "Barang berhasil ditambahkan!" << std::endl;
 }
@@ -114,7 +114,7 @@ void Shop::showProducts_() {
     std::cout << "Belum ada produk." << std::endl;
   } else {
   
-    for (Product& product: this->products_) {
+    for (Product& product: products_) {
       printf("%d. %s - Rp%.f\n", product.getId(), product.getProductName().c_str(), product.getProductPrice());
     }
   }
@@ -140,9 +140,9 @@ void Shop::buyProduct_(const int &productIndex) {
 }
 
 void Shop::start() {
-  while (this->isRunning_) {
+  while (isRunning_) {
     // Ngecek apakah ada di symbol ini di os kalian
-    this->clear_();
-    this->showMenu_();
+    clear_();
+    showMenu_();
   }
 }

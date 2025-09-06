@@ -7,7 +7,7 @@ std::string& Maze::generateSymbol() {
 }
 
 std::vector<int> &Maze::getPlayerPosition() {
-  return this->playerPosition;
+  return playerPosition;
 }
 
 int Maze::generateRandomPosition() {
@@ -17,39 +17,39 @@ int Maze::generateRandomPosition() {
 } 
 
 void Maze::generateMaze() {
-  this->map.clear();
-  this->map.resize(20);
-  for (int i = 0; i < this->map.size(); i++) {
-    this->map[i].resize(20);
-    this->map[i][i].resize(10);
+  map.clear();
+  map.resize(20);
+  for (int i = 0; i < map.size(); i++) {
+    map[i].resize(20);
+    map[i][i].resize(10);
   }
 
-  int playerPositionX = this->generateRandomPosition();
-  int playerPositionY = this->generateRandomPosition();
-  this->playerPosition = {playerPositionX, playerPositionY};
-  this->map[playerPositionY][playerPositionX].insert(this->map[playerPositionY][playerPositionX].begin(), Sprite("P", {playerPositionX, playerPositionY}));
+  int playerPositionX = generateRandomPosition();
+  int playerPositionY = generateRandomPosition();
+  playerPosition = {playerPositionX, playerPositionY};
+  map[playerPositionY][playerPositionX].insert(map[playerPositionY][playerPositionX].begin(), Sprite("P", {playerPositionX, playerPositionY}));
   
-  int endPositionX = this->generateRandomPosition();
-  int endPositionY = this->generateRandomPosition();
-  this->endPosition = {endPositionX, endPositionY};
-  this->map[endPositionY][endPositionX].insert(this->map[endPositionY][endPositionX].begin(), Sprite("E", {endPositionX, endPositionY}));
+  int endPositionX = generateRandomPosition();
+  int endPositionY = generateRandomPosition();
+  endPosition = {endPositionX, endPositionY};
+  map[endPositionY][endPositionX].insert(map[endPositionY][endPositionX].begin(), Sprite("E", {endPositionX, endPositionY}));
 
   for (int i = 0; i < 20; i++) {
     for (int j = 0; j < 20; j++) {
       std::string symbol = generateSymbol();
-      if (this->map[i][j].size() > 0) {
-        if (!(this->map[i][j][0].getValue() == "E")) {
-          this->map[i][j].push_back(Sprite(symbol, {j, i}));
+      if (map[i][j].size() > 0) {
+        if (!(map[i][j][0].getValue() == "E")) {
+          map[i][j].push_back(Sprite(symbol, {j, i}));
         }
       }
-      this->map[i][j].push_back(Sprite(symbol, {j, i}));
+      map[i][j].push_back(Sprite(symbol, {j, i}));
     }
   }
 }
 
 void Maze::printMap() {
   
-  for (auto& row: this->map) { 
+  for (auto& row: map) { 
     for (auto& col: row) {
       if (col[0].isHidden() && col[0].getValue() != "#" && col[0].getValue() != "P" && col[0].getValue() != "E") {
         std::cout << "?";
@@ -62,8 +62,8 @@ void Maze::printMap() {
 }
 
 void Maze::movePlayer(std::vector<int> coordinates) {
-    int currentPositionX = this->playerPosition[0];
-    int currentPositionY = this->playerPosition[1];
+    int currentPositionX = playerPosition[0];
+    int currentPositionY = playerPosition[1];
     int newPositionX = currentPositionX + coordinates[0];
     int newPositionY = currentPositionY + coordinates[1];
     
@@ -71,26 +71,26 @@ void Maze::movePlayer(std::vector<int> coordinates) {
         return; 
     }
     
-    if (this->map[newPositionY][newPositionX][0].getValue() == "#") {
+    if (map[newPositionY][newPositionX][0].getValue() == "#") {
         return; 
     }
     
-    if (!this->map[currentPositionY][currentPositionX].empty()) {
-        for (auto it = this->map[currentPositionY][currentPositionX].begin(); 
-             it != this->map[currentPositionY][currentPositionX].end(); ++it) {
+    if (!map[currentPositionY][currentPositionX].empty()) {
+        for (auto it = map[currentPositionY][currentPositionX].begin(); 
+             it != map[currentPositionY][currentPositionX].end(); ++it) {
             if (it->getValue() == "P") {
-                this->map[currentPositionY][currentPositionX].erase(it);
+                map[currentPositionY][currentPositionX].erase(it);
                 break;
             }
         }
     }
   
-    this->map[newPositionY][newPositionX].insert(
-        this->map[newPositionY][newPositionX].begin(), 
+    map[newPositionY][newPositionX].insert(
+        map[newPositionY][newPositionX].begin(), 
         Sprite("P", {newPositionX, newPositionY})
     );
     
-    this->playerPosition = {newPositionX, newPositionY};
+    playerPosition = {newPositionX, newPositionY};
 }
 
 Map &Maze::getMap() {

@@ -3,9 +3,9 @@
 Skill::Skill(const std::string& name, double bonusDamage): name_(name), bonusDamage_(bonusDamage) {};
 
 std::string& Skill::getName() {
-  return this->name_;
+  return name_;
 }
 
 double& Skill::getBonusDamage() {
-  return this->bonusDamage_;
+  return bonusDamage_;
 }

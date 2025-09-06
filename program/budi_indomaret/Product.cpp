@@ -6,14 +6,14 @@ Product::Product(uint32_t productId, const std::string productName, double produ
 Product::Product(const std::string productName, uint32_t productPrice): productName_(productName), productPrice_(productPrice) {}
 
 uint32_t &Product::getId() {
-  return this->productId_;
+  return productId_;
 }
 
 std::string &Product::getProductName() {
-  return this->productName_;
+  return productName_;
 }
 
 double &Product::getProductPrice() {
-  return this->productPrice_;
+  return productPrice_;
 }
 

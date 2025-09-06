@@ -65,15 +65,15 @@ void Hospital::generateDummyPatients_(uint32_t count)
   std::cout << "<<Dummy Patient Generator>>" << std::endl;
 
   for (int i = 0; i < defaultPatients.size(); i++) {
-    auto tingkatan = this->generateRandomTingkatan_();
-    auto uniqueId = this->generateUniqueId_();
+    auto tingkatan = generateRandomTingkatan_();
+    auto uniqueId = generateUniqueId_();
 
-    this->allPatients[tingkatan].emplace_back(uniqueId, defaultPatients[i], tingkatan, this->allPatients[tingkatan].size());
+    allPatients[tingkatan].emplace_back(uniqueId, defaultPatients[i], tingkatan, allPatients[tingkatan].size());
   }
 }
 
 Hospital::Hospital() {
-  this->generateDummyPatients_(10);
+  generateDummyPatients_(10);
 }
 
 void Hospital::showMenu_() {
@@ -89,21 +89,21 @@ void Hospital::showMenu_() {
   switch (option) {
     case 1:
       clear();
-      this->addPatient_();
+      addPatient_();
       wait();
       break;
     case 2:
       clear();
-      this->handlePatient_();
+      handlePatient_();
       wait();
       break;
     case 3:
       clear();
-      this->showPatients_();
+      showPatients_();
       wait();
       break;
     case 4:
-      this->isRunning_ = false;
+      isRunning_ = false;
       break;
     default: 
       std::cout << "Opsi tidak ada" << std::endl;
@@ -149,8 +149,8 @@ void Hospital::addPatient_() {
 }
 
 void Hospital::start() {
-  while (this->isRunning_) {
+  while (isRunning_) {
     clear();
-    this->showMenu_();
+    showMenu_();
   }
 }
