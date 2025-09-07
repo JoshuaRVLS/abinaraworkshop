@@ -14,7 +14,11 @@ void clear() {
 
 void Game::wait_() {
   std::cout << "Press (q = quit, enter = continue)...";
-  int key = utils::getch();
+  #ifdef __linux__
+    int key = utils::getch();
+  #else 
+    int key = getch();
+  #endif
   if (key == 'q') {
    exit(0);
   }

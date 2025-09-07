@@ -52,7 +52,11 @@ void Hero::takeTurn(Character& target) {
     std::cout << "[3] Bertahan" << std::endl;
     std::cout << "\n[Choose option by pressing keyboard]" << std::endl;
 
-    char key = utils::getch();
+    #ifdef __linux__
+      int key = utils::getch();
+    #else 
+      int key = getch();
+    #endif
       
     switch(key) {
       case '1':
