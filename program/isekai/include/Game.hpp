@@ -18,7 +18,8 @@ class Game {
   int maxMonsters = 3;
   int maxTraps = 3;
   int maxTreasures = 3;
-  int totalTurn;
+  int totalTurn = 0;
+  int currentEnemyIndex;
 
   std::string status_;
 

@@ -27,7 +27,7 @@ void Map::generateMap() {
   // Adding Random Inside Wall (5-10 wall)
   std::mt19937 gen(rd());
   std::uniform_int_distribution generateNumber(5, 10);
-  std::uniform_int_distribution randomPosition(1, 9);
+  std::uniform_int_distribution randomPosition(1, 8);
 
   for (int k = 0; k < generateNumber(gen); k++) {
     int randomPositionX = randomPosition(gen);
@@ -97,7 +97,7 @@ void Map::movePlayer(Player& player, std::vector<int> coordinates) {
     int newPositionX = currentPositionX + coordinates[0];
     int newPositionY = currentPositionY + coordinates[1];
     
-    if (newPositionX < 0 || newPositionX >= 20 || newPositionY < 0 || newPositionY >= 20) {
+    if (newPositionX < 0 || newPositionX >= 10 || newPositionY < 0 || newPositionY >= 10) {
         return; 
     }
     

@@ -72,9 +72,10 @@ void Game::check_() {
     if (currentLayer[1].getValue() == "M") {
       player_.setBattle(true);
       Character* enemy;
-      for (auto& monster: monsters_) {
-        if ((monster.getPosition().getX() == currentLayer[1].getPosition().getX()) && (monster.getPosition().getY() == currentLayer[1].getPosition().getY())) {
-          enemy = &monster;
+      for (int i = 0; i < monsters_.size(); i++) {
+        if ((monsters_[i].getPosition().getX() == currentLayer[1].getPosition().getX()) && (monsters_[i].getPosition().getY() == currentLayer[1].getPosition().getY())) {
+          enemy = &monsters_[i];
+          currentEnemyIndex = i;
         }
       }
       player_.setCurrentEnemy(*enemy);
@@ -126,7 +127,9 @@ void Game::checkWinner_() {
   } else if(player_.getCurrentEnemy().getHealth() <= 0) {
     std::cout << player_.getName() << " Menang!" << std::endl;
     player_.setBattle(false);
-    player_.clearEnemy();
+    map_.getMap()[player_.getPosition().getY()][player_.getPosition().getX()].erase(
+      map_.getMap()[player_.getPosition().getY()][player_.getPosition().getX()].begin() + 1);
+    monsters_.erase(monsters_.begin() + currentEnemyIndex);
     totalTurn = 0;
   }
 }
@@ -148,6 +151,9 @@ void Game::fight_() {
 }
 
 void Game::update_() {
+  if (player_.getLife() <= 0) {
+    exit(0);
+  }
   check_();
 }
 
@@ -159,10 +165,13 @@ void Game::start() {
       render_();
       input_();
     } else {
-      clear_();
-      checkWinner_();
-      fight_();
-      totalTurn++;
+      while (player_.isBattle()) {
+        clear_();
+        checkWinner_();
+        fight_();
+        char ch = getch();
+        totalTurn++;    
+      } 
     }
   }
 }
