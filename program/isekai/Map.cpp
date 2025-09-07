@@ -26,8 +26,8 @@ void Map::generateMap() {
 
   // Adding Random Inside Wall (5-10 wall)
   std::mt19937 gen(rd());
-  std::uniform_int_distribution generateNumber(5, 10);
-  std::uniform_int_distribution randomPosition(1, 8);
+  std::uniform_int_distribution<int> generateNumber(5, 10);
+  std::uniform_int_distribution<int> randomPosition(1, 8);
 
   for (int k = 0; k < generateNumber(gen); k++) {
     int randomPositionX = randomPosition(gen);
@@ -47,16 +47,22 @@ void Map::renderMap() {
 }
 
 void Map::spawnPlayer(Player& player) {
-  int randomPositionX = utils::generateNumber(1, 8);
-  int randomPositionY = utils::generateNumber(1, 8);
+  std::mt19937 gen(rd());
+  std::uniform_int_distribution<int> generateNumber(5, 10);
+  std::uniform_int_distribution<int> randomPosition(1, 8);
+  int randomPositionX = randomPosition(gen);
+  int randomPositionY = randomPosition(gen);
   Position playerPosition(randomPositionX, randomPositionY);
   player = Player("P", playerPosition, "Budi", 100, 30, 20);
   tiles_[randomPositionY][randomPositionX].insert(tiles_[randomPositionY][randomPositionX].begin(), player);
 }
 
 void Map::spawnMonster(std::vector<Monster>& monsters) {
-  int randomPositionX = utils::generateNumber(1, 8);
-  int randomPositionY = utils::generateNumber(1, 8);
+  std::mt19937 gen(rd());
+  std::uniform_int_distribution<int> generateNumber(5, 10);
+  std::uniform_int_distribution<int> randomPosition(1, 8);
+  int randomPositionX = randomPosition(gen);
+  int randomPositionY = randomPosition(gen);
   Position monsterPosition(randomPositionX, randomPositionY);
   Monster monster = Monster("M", monsterPosition, "Monster", utils::generateNumber(50, 100), utils::generateNumber(10, 20), utils::generateNumber(10, 20));
   monsters.push_back(monster);
@@ -64,24 +70,33 @@ void Map::spawnMonster(std::vector<Monster>& monsters) {
 }
 
 void Map::spawnTraps(std::vector<Trap> &traps) {
-  int randomPositionX = utils::generateNumber(1, 8);
-  int randomPositionY = utils::generateNumber(1, 8);
+  std::mt19937 gen(rd());
+  std::uniform_int_distribution<int> generateNumber(5, 10);
+  std::uniform_int_distribution<int> randomPosition(1, 8);
+  int randomPositionX = randomPosition(gen);
+  int randomPositionY = randomPosition(gen);
   Position trapPosition(randomPositionX, randomPositionY);
   Trap trap = Trap("X", trapPosition, 1);
   tiles_[randomPositionY][randomPositionX].insert(tiles_[randomPositionY][randomPositionX].begin(), trap);
 }
 
 void Map::spawnEnd() {
-  int randomPositionX = utils::generateNumber(1, 8);
-  int randomPositionY = utils::generateNumber(1, 8);
+  std::mt19937 gen(rd());
+  std::uniform_int_distribution<int> generateNumber(5, 10);
+  std::uniform_int_distribution<int> randomPosition(1, 8);
+  int randomPositionX = randomPosition(gen);
+  int randomPositionY = randomPosition(gen);
   Position endPosition(randomPositionX, randomPositionY);
   Sprite end = Trap("E", endPosition, 1);
   tiles_[randomPositionY][randomPositionX].insert(tiles_[randomPositionY][randomPositionX].begin(), end);
 }
 
 void Map::spawnTreasures() {
-  int randomPositionX = utils::generateNumber(1, 8);
-  int randomPositionY = utils::generateNumber(1, 8);
+  std::mt19937 gen(rd());
+  std::uniform_int_distribution<int> generateNumber(5, 10);
+  std::uniform_int_distribution<int> randomPosition(1, 8);
+  int randomPositionX = randomPosition(gen);
+  int randomPositionY = randomPosition(gen);
   Position treasurePosition(randomPositionX, randomPositionY);
   Sprite treasure = Trap("T", treasurePosition, 1);
   tiles_[randomPositionY][randomPositionX].insert(tiles_[randomPositionY][randomPositionX].begin(), treasure);

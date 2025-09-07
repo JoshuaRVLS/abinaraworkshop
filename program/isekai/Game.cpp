@@ -128,7 +128,7 @@ void Game::checkWinner_() {
     std::cout << player_.getName() << " Menang!" << std::endl;
     player_.setBattle(false);
     map_.getMap()[player_.getPosition().getY()][player_.getPosition().getX()].erase(
-      map_.getMap()[player_.getPosition().getY()][player_.getPosition().getX()].begin() + 1);
+    map_.getMap()[player_.getPosition().getY()][player_.getPosition().getX()].begin() + 1);
     monsters_.erase(monsters_.begin() + currentEnemyIndex);
     totalTurn = 0;
   }
