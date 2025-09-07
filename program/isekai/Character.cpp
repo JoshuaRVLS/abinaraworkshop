@@ -17,6 +17,31 @@ double &Character::getHealth() {
   return health_;
 }
 
+bool &Character::isBattle() {
+  return isBattle_;
+}
+
+Character &Character::getCurrentEnemy() {
+  return *currentEnemy_;
+}
+
+void Character::setCurrentEnemy(Character &enemy) {
+  currentEnemy_ = &enemy;
+}
+
+void Character::setBattle(bool isBattle)
+{
+  isBattle_ = isBattle;
+}
+
+void Character::setHealth(int health) {
+  health_ = health;
+}
+
+void Character::clearEnemy() {
+  currentEnemy_ = nullptr;
+}
+
 double &Character::getAttack() {
   return attack_;
 }
@@ -32,5 +57,3 @@ std::vector<Skill> &Character::getSkills() {
 bool &Character::isOnDefense() {
   return onDefense;
 }
-
-

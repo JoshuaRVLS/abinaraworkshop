@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include "Skill.hpp"
+#include "Sprite.hpp"
 
 class Character {
 protected:
@@ -9,6 +10,8 @@ protected:
   double health_, attack_, defense_;
   std::vector<Skill> skills_;
   bool onDefense = false;
+  bool isBattle_ = false;
+  Character* currentEnemy_;
 
   virtual void init_() = 0;
 
@@ -29,7 +32,13 @@ public:
   double& getDefense();
   std::vector<Skill>& getSkills();
   bool& isOnDefense();
+  bool& isBattle();
+  Character& getCurrentEnemy();
+
+  void setCurrentEnemy(Character& enemy);
+  void setBattle(bool isBattle);
+  void setHealth(int health);
+  void clearEnemy();
 
   void takeDamage(double damage);
-
 };

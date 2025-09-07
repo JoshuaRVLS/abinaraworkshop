@@ -6,7 +6,7 @@ class Position {
 
 public:
   Position() {};
-  Position(std::vector<int>& pos);
+  Position(int& x, int& y);
 
   int& getX();
   int& getY();
